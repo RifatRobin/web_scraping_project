@@ -108,17 +108,27 @@
 
 
   <!-- Result Section -->
+  <hr>
 
-  <hr>
-  <center>
-    <h2>Results</h2>
-  </center>
-  <hr>
-  <div class="result">
-    {% for scraping_result in extracted_data %}
-    <p>{{scraping_result}}</p>
-    {% endfor %}
-  </div>
+
+  <!-- result table -->
+  <table class="table">
+
+    <thead class="thead-dark">
+      <tr>
+        <th style="text-align:center;" scope="col">Result</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for scraping_result in extracted_data %}
+      <tr>
+        <td>{{scraping_result}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
 
 
 </body>
