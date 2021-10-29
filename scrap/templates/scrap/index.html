@@ -3,50 +3,123 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
-    <title>Home</title>
+  <title>Web Scraper</title>
+
+  <style>
+    .result {
+      position: relative;
+      right: -300px;
+    }
+  </style>
+
 </head>
 
 <body>
-<br>
-<br>
-<br>
-<br>
-<center>
-<h2>Web scraper</h2>
-</center>
 
-<center>
-<form method="POST" action="/">
-{% csrf_token %}
-  <div class="form-group row">
-    <label for="web_link" class="col-sm-2 col-form-label">Link</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" name='web_link' id="web_link" placeholder="link">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="tag_code" class="col-sm-2 col-form-label">Tag</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" name='tag_code' id="tag_code" placeholder="Tag">
-    </div>
+
+  <br>
+  <br>
+  <center>
+    <h2>Web scraper</h2>
+  </center>
+
+  <br>
+
+  <!-- Without attribute of any tag -->
+
+  <center>
+    <h5 style="color:rgb(202, 97, 27)">Without Attribute</h5>
+    <form method="POST" action="/">
+      {% csrf_token %}
+
+      <div class="form-group row">
+        <label for="web_link" class="col-sm-2 col-form-label">Link</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name='web_link' id="web_link" placeholder="link" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="tag_code" class="col-sm-2 col-form-label">Tag</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name='tag_code' id="tag_code" placeholder="Tag" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-5">
+          <button type="submit" class="btn btn-success">Scrap</button>
+        </div>
+      </div>
+
+    </form>
+  </center>
+  <hr>
+
+
+
+  <!-- With Attribute of tags -->
+
+  <br>
+  <center>
+    <h5 style="color:rgb(27, 82, 202)">With Attribute</h5>
+
+    <form method="POST" action="with_attributes">
+      {% csrf_token %}
+
+      <div class="form-group row">
+        <label for="web_link" class="col-sm-2 col-form-label">Link</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name='web_link' id="web_link" placeholder="link">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tag_code" class="col-sm-2 col-form-label">Tag</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name='tag_code' id="tag_code" placeholder="Tag" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="attribute" class="col-sm-2 col-form-label">Attribute's Name</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name='attribute' id="attribute"
+            placeholder="attribute(example: href,src)" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-5">
+          <button type="submit" class="btn btn-dark">Scrap</button>
+        </div>
+      </div>
+
+    </form>
+  </center>
+
+
+
+  <!-- Result Section -->
+
+  <hr>
+  <center>
+    <h2>Results</h2>
+  </center>
+  <hr>
+  <div class="result">
+    {% for scraping_result in extracted_data %}
+    <p>{{scraping_result}}</p>
+    {% endfor %}
   </div>
 
-  <div class="form-group row">
-    <div class="col-sm-5">
-      <button type="submit" class="btn btn-primary">submit</button>
-    </div>
-  </div>
-  
-</form>
-</center>
 
 </body>
 
